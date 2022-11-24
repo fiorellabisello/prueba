@@ -1,20 +1,20 @@
 class Juego{
   Cartman personaje = new Cartman();
-  //Verduras verdura = new Verduras();
   int escenario = 0;
   int tiempo = 0;
   Fondo fondo = new Fondo();
   Verduras [] verdura = new Verduras[3];
-  
+ // int son variables enteras, floats con numers con coma, y despues estan las bolean que es t or f 
   int contador = 20;
   int segundos, tiempoComienzo;
   
-      Juego(){
+    Juego(){
     tiempoComienzo = millis()/1000 + contador;
     for(int i=0; i<verdura.length; i++){
       verdura[i] = new Verduras(random(width), random(-10,0));
     }
-    
+   // esto es el constructor de mi clase juego, dentro de el contiene el contador y tmb la caida de verduras hechas con un ciclo for, tiene un arreglo el cual declara las posiciones de las verduras a traves de una funcion con parametros.con funcion de parametros, random wi y el otro random.
+   //
   }
   
   void actualizar(){
@@ -27,13 +27,14 @@ class Juego{
    }
   
   void inicio() {
+    //player . play arrancar
     player.play();
     escenario = 0;
     textAlign(CENTER);
     fill(0);
     fondo.actualizarFondo();
-    text("J = Jugar", height/2, 220);
-    text("I = Instrucciones", height/2, width/2);
+    text("Aprieta J para Jugar", height/2, 220);
+    text("Aprienta I para Instrucciones", height/2, width/2);
   }
   
   void instrucciones() {
@@ -41,10 +42,10 @@ class Juego{
     background(0);
     textAlign(CENTER);
     fondo.actualizarFondo();
-    text("Esquivar las verduras!", height/2, 220);
-    text("Tenes 5 vidas!", height/2, 235);
+    text("Cartman odia las verduras!", height/2, 220);
+    text("no puede tocar ninguna o perderas", height/2, 235);
     text("Movimiento: a/d == <-/->", height/2, width/2);
-    text("J = Jugar", height/2, 270);
+    text("J para Jugar", height/2, 270);
   }
 
   void perdiste() {
@@ -60,7 +61,7 @@ class Juego{
     fondo.actualizarFondo();
     textAlign(CENTER);
     text("GANASTE", height/2, width/2);
-    text("Apretar 'm' para volver", height/2, 270);
+    text("Apretar 'm' para volver", height/2, 270);    
   }
 
   void keyPressed() {
@@ -99,9 +100,9 @@ class Juego{
   
   void jugar(){
     player.pause();
+    // para q pause
     escenario = 2;
     fondo.actualizarFondo();
-    //verdura.dibujo();
     personaje.dibujo();
     segundos = tiempoComienzo - millis()/1000;
     if (segundos < 0)
@@ -109,7 +110,7 @@ class Juego{
     else                
       text(segundos, 80, 80);
       if(segundos == 0)
-        escenario = 4;
+        ganaste();
         
      for (int e=0; e<verdura.length; e++){
        verdura[e].dibujo();
@@ -122,12 +123,14 @@ class Juego{
            verdura[e].posX= random(600);
         }
      }
-     
-     
+     // lo que tiene height y random es para que la caida sea infinita
+     // un for en cual dibujo ada una de las verduras con un arreglo, despues calculo la distancia para las colisiones entre la pos x, y, de cada verdu y la pos x, y del personaje, y cuando esta distancia sea menor o igual a 40 pierde.
+     // && es que en un condicional 
      
   }
    
   void dibujo(){
     actualizar();
   }
+ 
 }

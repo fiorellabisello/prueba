@@ -1,7 +1,9 @@
+// desarrollo la clase cartman
 class Cartman{
   PImage personaje = loadImage("cartman.png");
   int posX = 200;
   int posY = 500;
+  // declaro imagen y posiciones de mi personaje
   
   void dibujo(){
     image(personaje, posX, posY, 80,80);
